@@ -14,6 +14,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import de.exhumedo.dhbtools.composeApp.di.commonModule
 import de.exhumedo.dhbtools.shared.Greeting
 import kmp_dhb_tools.composeapp.generated.resources.Res
 import kmp_dhb_tools.composeapp.generated.resources.compose_multiplatform
@@ -26,7 +27,7 @@ import org.koin.compose.KoinApplication
 fun App() {
 
     KoinApplication(application = {
-        modules()
+        modules(commonModule)
     }) {
         MaterialTheme {
             var showContent by remember { mutableStateOf(false) }
