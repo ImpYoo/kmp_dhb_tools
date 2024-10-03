@@ -38,8 +38,33 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            // put your Multiplatform dependencies here
+            api(libs.ktor.client.core)
+            api(libs.ktor.client.logging)
+            api(libs.ktor.client.auth)
+            api(libs.ktor.client.content.negotiation)
+            api(libs.ktor.client.serialization.kotlinx.json)
         }
+
+        androidMain.dependencies {
+            implementation(libs.ktor.client.okhttp)
+        }
+
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
+        }
+
+        jvmMain.dependencies {
+            implementation(libs.ktor.client.okhttp)
+        }
+
+        macosMain.dependencies {
+            implementation(libs.ktor.client.cio)
+        }
+
+        wasmJsMain.dependencies {
+            implementation(libs.ktor.client.js)
+        }
+
     }
 }
 
