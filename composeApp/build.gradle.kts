@@ -20,13 +20,26 @@ kotlin {
                 outputFileName = "composeApp.js"
                 devServer = (devServer ?: KotlinWebpackConfig.DevServer()).apply {
                     static = (static ?: mutableListOf()).apply {
-                        // Serve sources to debug inside browser
                         add(project.projectDir.path)
                     }
                 }
             }
         }
         binaries.executable()
+    }
+
+    js(IR) {
+        browser {
+            commonWebpackConfig {
+                outputFileName = "composeApp.js"
+                devServer = (devServer ?: KotlinWebpackConfig.DevServer()).apply {
+                    static = (static ?: mutableListOf()).apply {
+                        add(project.projectDir.path)
+                    }
+                }
+            }
+            binaries.executable()
+        }
     }
 
     androidTarget {
@@ -72,6 +85,7 @@ kotlin {
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
         }
+        jsMain.dependencies {}
     }
 }
 
