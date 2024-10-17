@@ -1,5 +1,7 @@
 package de.exhumedo.dhbtools.shared.httpclient
 
+import de.exhumedo.dhbtools.shared.model.response.sportradar.tournaments.TournamentsResponse
+import io.ktor.client.call.body
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
@@ -23,7 +25,7 @@ class SportradarHttpClient(
         client.get("$standingsUrl/$phaseId").bodyAsText()
     }
 
-    suspend fun getTournaments() {
-        client.get(tournamentsUrl).bodyAsText()
+    suspend fun getTournaments(): TournamentsResponse {
+        return client.get(tournamentsUrl).body<TournamentsResponse>()
     }
 }
